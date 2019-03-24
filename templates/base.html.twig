@@ -14,9 +14,31 @@
         <h5 class="my-0 mr-md-auto font-weight-normal">Logboek</h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="{{ path('default') }} ">Home</a>
-        </nav>
+            <a class="p-2 text-dark" href="/truck">truck</a>
+            <a class="p-2 text-dark" href="/logboek">logboek</a>
+         </nav>
         <a class="p-2 text-dark" href="/logout">logout</a>
     </div>
+    {% elseif is_granted('ROLE_ADMIN') %}
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+            <h5 class="my-0 mr-md-auto font-weight-normal">Logboek</h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark" href="{{ path('default') }} ">Home</a>
+                <a class="p-2 text-dark" href="/truck">truck</a>
+                <a class="p-2 text-dark" href="/logboek">logboek</a>
+            </nav>
+            <a class="p-2 text-dark" href="/logout">logout</a>
+        </div>
+    {% elseif is_granted('ROLE_CHAUFFEUR') %}
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+            <h5 class="my-0 mr-md-auto font-weight-normal">Logboek</h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark" href="{{ path('default') }} ">Home</a>
+                <a class="p-2 text-dark" href="/truck">truck</a>
+                <a class="p-2 text-dark" href="/logboek">logboek</a>
+            </nav>
+            <a class="p-2 text-dark" href="/logout">logout</a>
+        </div>
         {% else %}
             <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
                 <h5 class="my-0 mr-md-auto font-weight-normal">Logboek</h5>
