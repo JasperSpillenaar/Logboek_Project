@@ -30,6 +30,9 @@ class TruckController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_CHAUFFEUR', 'ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Access Denied.');
+        }
         $truck = new Truck();
         $form = $this->createForm(TruckType::class, $truck);
         $form->handleRequest($request);
@@ -61,8 +64,12 @@ class TruckController extends AbstractController
     /**
      * @Route("/{id}/edit", name="truck_edit", methods={"GET","POST"})
      */
+
     public function edit(Request $request, Truck $truck): Response
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_CHAUFFEUR', 'ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Access Denied.');
+        }
         $form = $this->createForm(TruckType::class, $truck);
         $form->handleRequest($request);
 
