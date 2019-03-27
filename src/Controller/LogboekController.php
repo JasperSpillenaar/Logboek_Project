@@ -33,7 +33,7 @@ class LogboekController extends AbstractController
         if ($this->get('security.authorization_checker')->isGranted('ROLE_CHAUFFEUR', 'ROLE_ADMIN')) {
         throw $this->createAccessDeniedException('Access Denied.');
         }
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+        else {
 
         $logboek = new Logboek();
         $form = $this->createForm(LogboekType::class, $logboek);
@@ -68,10 +68,6 @@ class LogboekController extends AbstractController
      */
     public function edit(Request $request, Logboek $logboek): Response
     {
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('Access Denied.');
-        }
-
         $form = $this->createForm(LogboekType::class, $logboek);
         $form->handleRequest($request);
 
@@ -81,14 +77,13 @@ class LogboekController extends AbstractController
             return $this->redirectToRoute('logboek_index', [
                 'id' => $logboek->getId(),
             ]);
-        }
+    }
 
         return $this->render('logboek/edit.html.twig', [
             'logboek' => $logboek,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="logboek_delete", methods={"DELETE"})
      */

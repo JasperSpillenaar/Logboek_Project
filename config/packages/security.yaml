@@ -5,8 +5,8 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
+        ROLE_CHAUFFEUR:   ROLE_ADMIN
         ROLE_SUPER_ADMIN: ROLE_ADMIN
-        ROLE_CHAUFFEUR: ROLE_USER
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -33,5 +33,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/logboek/new, role: ROLE_SUPER_ADMIN }
-        - { path: ^/truck/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/logboek, role: ROLE_USER }
+        - { path: ^/truck, role: ROLE_USER }

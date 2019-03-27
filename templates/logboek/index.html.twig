@@ -32,7 +32,9 @@
                 <td>{{ logboek.event }}</td>
                 <td>
                     <a href="{{ path('logboek_show', {'id': logboek.id}) }}">show</a>
-                    <a href="{{ path('logboek_edit', {'id': logboek.id}) }}">edit</a>
+                    {% if is_granted('ROLE_CHAUFFEUR') or is_granted('ROLE_SUPER_ADMIN') %}
+                        <a href="{{ path('logboek_edit', {'id': logboek.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
